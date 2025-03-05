@@ -1,2 +1,4 @@
 .venv/
 project_plan.txt
+src/temp_app.py
+src/__pycache__/
