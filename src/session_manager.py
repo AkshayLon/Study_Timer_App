@@ -10,7 +10,7 @@ class SessionHandler:
         
         self.history_data_file = os.path.join(script_dir, history_data_file)
         self._init_history_file()
-
+        
     def _init_params_file(self):
         if os.path.getsize(self.distribution_data_file)==0:
             init_data = {
@@ -30,7 +30,14 @@ class SessionHandler:
             )
         """)
         con.commit()
+        con.close()
 
     def export_focus_session(self, start_time, focus_time):
-        print(start_time)
-        print(focus_time)
+        con = sqlite3.connect(self.history_data_file)
+        cursor = con.cursor()
+        cursor.execute("""
+            INSERT INTO history (start_time, study_length)
+            VALUES (?, ?)
+        """, (start_time, focus_time))
+        con.commit()
+        con.close()
