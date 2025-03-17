@@ -3,3 +3,5 @@ project_plan.txt
 src/temp_app.py
 src/__pycache__/
 src/misc/
+data/params.json
+data/sessions.db
